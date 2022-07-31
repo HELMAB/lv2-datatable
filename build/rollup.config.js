@@ -9,6 +9,7 @@ import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
+import json from "@rollup/plugin-json";
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
@@ -27,6 +28,9 @@ const projectRoot = path.resolve(__dirname, '..');
 const baseConfig = {
   input: 'src/entry.js',
   plugins: {
+    json: json({
+      compact: true
+    }),
     preVue: [
       alias({
         entries: [
@@ -39,6 +43,7 @@ const baseConfig = {
     ],
     replace: {
       'process.env.NODE_ENV': JSON.stringify('production'),
+      preventAssignment: true,
     },
     vue: {
       css: true,
