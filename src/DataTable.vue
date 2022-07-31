@@ -154,7 +154,7 @@ export default {
   components: { Paginate },
   props: {
     axios: {
-      type: Object,
+      type: [Object, Function],
       required: true,
     },
     tableId: {
@@ -461,8 +461,7 @@ export default {
   align-items: center;
   gap: 10px;
   width: 15vw;
-  justify-content: end;
-  float: right;
+  justify-content: flex-end;
   margin: 20px 0;
 }
 
@@ -473,8 +472,8 @@ export default {
 }
 
 .loading-container {
-  width: calc(100%);
-  height: calc(100%);
+  width: 100%;
+  height: 100%;
   position: absolute;
   background: rgba(136, 136, 136, 0.5);
   display: flex;

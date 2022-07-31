@@ -1,11 +1,14 @@
 <script>
 import Vue from "vue";
 import DataTable from "@/DataTable.vue";
+import axios from "axios";
+import ButtonActions from "./components/ButtonActions.vue";
 
 export default Vue.extend({
   name: "ServeDev",
   components: {
     DataTable,
+    ButtonActions,
   },
   data() {
     return {
@@ -56,7 +59,7 @@ export default Vue.extend({
       this.locale = this.locale === "km" ? "en" : "km";
     },
   },
-  beforeMount() {
+  created() {
     this.dataRows = Array(10000)
       .fill(1, 0, 10000)
       .map((_, i) => {
@@ -86,7 +89,7 @@ export default Vue.extend({
         </button>
       </div>
     </div>
-
+    <!-- :server-side="true" -->
     <DataTable
       :axios="axios"
       url="http://127.0.0.1:8000/api/v1/posts/datatable"

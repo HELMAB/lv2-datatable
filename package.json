@@ -20,7 +20,8 @@
         "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
     },
     "dependencies": {
-        "debounce": "^1.2.1"
+        "debounce": "^1.2.1",
+        "vuejs-paginate": "^2.1.0"
     },
     "devDependencies": {
         "@babel/core": "^7.14.6",
