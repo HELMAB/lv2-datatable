@@ -2,7 +2,7 @@
 
 Integrate Laravel Vue Datatable with your Laravel application without using JQuery.
 
-![](src/assets/ui.png)
+![](https://raw.githubusercontent.com/HELMAB/lv2-datatable/master/src/assets/ui.png?token=GHSAT0AAAAAABWQR7SDE4B6ROYDM4DRBASYYXGPMNQ)
 
 ## Installation
 
@@ -53,21 +53,21 @@ export default {
         {
           data: "title",
           name: "title",
-          title: this.locale === "km" ? "ចំណង់ជើង" : "Title",
+          title: "Title",
           orderable: true,
           searchable: true,
         },
         {
           data: "user.name",
           name: "user.name",
-          title: this.locale === "km" ? "អ្នកប្រើប្រាស់" : "User",
+          title: "User",
           orderable: true,
           searchable: false,
         },
         {
           data: "created_at",
           name: "created_at",
-          title: this.locale === "km" ? "កាលបរិច្ឆេទបង្កើត" : "Creation Date",
+          title: "Creation Date",
           orderable: true,
           searchable: false,
           width: "210px",
@@ -75,7 +75,7 @@ export default {
         {
           data: "action",
           name: "action",
-          title: this.locale === "km" ? "ប្រតិបត្តិការ" : "Action",
+          title: "Action",
           orderable: false,
           searchable: false,
           slot: "action",
@@ -104,6 +104,22 @@ export default {
 
 ## Methods
 
+To redraw the datatable, you can call this method.
+
 ```js
 this.$refs.datatable.refresh()
+```
+
+## Slots
+
+Every of column can have a slot, and it defines by adding the `slot` attribute inside `columns`. The slot name is the same as the column name, and it has `row` and `column` as props data.
+
+```vue
+<template>
+  <DataTable>
+    <template #action="{ row, column }">
+      <span>{{ row.title }} - {{ column.data }}</span>
+    </template>
+  </DataTable>
+</template>
 ```
