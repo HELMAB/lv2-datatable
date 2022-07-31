@@ -28,9 +28,6 @@ const projectRoot = path.resolve(__dirname, '..');
 const baseConfig = {
   input: 'src/entry.js',
   plugins: {
-    json: json({
-      compact: true
-    }),
     preVue: [
       alias({
         entries: [
@@ -43,7 +40,7 @@ const baseConfig = {
     ],
     replace: {
       'process.env.NODE_ENV': JSON.stringify('production'),
-      preventAssignment: true,
+      preventAssignment: true
     },
     vue: {
       css: true,
@@ -94,6 +91,7 @@ if (!argv.format || argv.format === 'es') {
       exports: 'named',
     },
     plugins: [
+      json({compact: true}),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
@@ -128,6 +126,7 @@ if (!argv.format || argv.format === 'cjs') {
       globals,
     },
     plugins: [
+      json({compact: true}),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue({
@@ -157,6 +156,7 @@ if (!argv.format || argv.format === 'iife') {
       globals,
     },
     plugins: [
+      json({compact: true}),
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
