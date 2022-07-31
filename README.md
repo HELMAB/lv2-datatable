@@ -1,6 +1,6 @@
 # Laravel Datatables + Vue2
 
-Integrate Laravel Vue Datatable with your Laravel application without using JQuery.
+Integrate Laravel Vue Datatable with your Laravel application without using JQuery. It can handle listing data locally and remote.
 
 ![](https://raw.githubusercontent.com/HELMAB/lv2-datatable/master/src/assets/ui.png?token=GHSAT0AAAAAABWQR7SDE4B6ROYDM4DRBASYYXGPMNQ)
 
@@ -39,12 +39,17 @@ Vue.use('Datatable', Datatable)
 
 <script>
 import axios from 'axios'
+import ButtonActions from '@/components/ButtonActions.vue'
+
 export default {
+  components: {
+    ButtonActions
+  },
   data () {
     return {
       axios,
       locale: 'en',
-      dataRows: [], // non server side data
+      dataRows: [],
     }
   },
   computed: {
