@@ -144,18 +144,19 @@ class PostController extends Controller
 
 ## Props
 
-| Prop          | Type    | Description                                |
-|---------------|---------|--------------------------------------------|
-| axios         | Object  | Axios instance                             |
-| url           | String  | The url to fetch data                      |
-| columns       | Array   | Columns to show                            |
-| locale        | String  | Localization code ("en", "km")             |
-| data-rows     | Array   | Static data of the table                   |
-| table-id      | String  | The table ID                               |
-| saved-state   | Boolean | Save state of datatable                    |
-| lengthOptions | Array   | Dropdown length option                     |
-| order         | Array   | Order column and direction                 |
-| design        | String  | ["bootstrap3", "bootstrap4", "bootstrap5"] |
+| Prop          | Type    | Description                                  |
+|---------------|---------|----------------------------------------------|
+| axios         | Object  | Axios instance                               |
+| url           | String  | The url to fetch data                        |
+| columns       | Array   | Columns to show                              |
+| locale        | String  | Localization code ("en", "km")               |
+| data-rows     | Array   | Static data of the table                     |
+| table-id      | String  | The table ID                                 |
+| saved-state   | Boolean | Save state of datatable                      |
+| server-side   | Boolean | Flag to switch handle between local & remote |
+| lengthOptions | Array   | Dropdown length option                       |
+| order         | Array   | Order column and direction                   |
+| design        | String  | ["bootstrap3", "bootstrap4", "bootstrap5"]   |
 
 ## Methods
 
