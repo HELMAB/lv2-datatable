@@ -198,7 +198,7 @@ export default {
     },
     url: {
       type: String,
-      required: true,
+      default: null,
     },
     dataRows: {
       type: Array,

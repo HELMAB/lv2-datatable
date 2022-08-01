@@ -61,18 +61,18 @@ export default Vue.extend({
   },
   created() {
     this.dataRows = Array(10000)
-      .fill(1, 0, 10000)
-      .map((_, i) => {
-        return {
-          id: i + 1,
-          title: `Title ${i + 1}`,
-          user: {
+        .fill(1, 0, 10000)
+        .map((_, i) => {
+          return {
             id: i + 1,
-            name: `User ${i + 1}`,
-          },
-          created_at: new Date().toLocaleString(),
-        };
-      });
+            title: `Title ${i + 1}`,
+            user: {
+              id: i + 1,
+              name: `User ${i + 1}`,
+            },
+            created_at: new Date().toLocaleString(),
+          };
+        });
   },
 });
 </script>
@@ -83,25 +83,37 @@ export default Vue.extend({
       <div class="col-md-12" style="margin: 24px 0">
         <button @click="toggleLocale" class="btn btn-primary">
           Toggle Locale
-        </button>
-        <button @click="$refs.datatable.refresh()" class="btn btn-info">
+        </button> <button @click="$refs.datatable.refresh()" class="btn btn-info">
           Refresh Datatable
         </button>
       </div>
     </div>
     <!-- :server-side="true" -->
     <DataTable
-      :axios="axios"
-      url="http://127.0.0.1:8000/api/v1/posts/datatable"
-      :columns="columns"
-      ref="datatable"
-      :locale="locale"
-      table-id="datatable"
-      saved-state
-      :data-rows="dataRows"
+        table-id="datatable-01"
+        ref="datatable"
+        :columns="columns"
+        :data-rows="dataRows"
+        :locale="locale"
+        saved-state
     >
       <template #action="{ row }">
-        <ButtonActions :row="row" />
+        <ButtonActions :row="row"/>
+      </template>
+    </DataTable>
+
+    <DataTable
+        table-id="datatable-02"
+        ref="datatable"
+        url="http://127.0.0.1:8000/api/v1/posts/datatable"
+        :axios="axios"
+        :columns="columns"
+        :locale="locale"
+        server-side
+        saved-state
+    >
+      <template #action="{ row }">
+        <ButtonActions :row="row"/>
       </template>
     </DataTable>
   </div>

@@ -24,14 +24,15 @@ Vue.use('Datatable', Datatable)
 
 ```vue
 <template>
-  <!--  HTTP Request-->
+  <!--  HTTP Request -->
   <DataTable
-      table-id="datatable-01"
+      table-id="datatable-02"
       ref="datatable"
       url="http://127.0.0.1:8000/api/v1/posts/datatable"
       :axios="axios"
       :columns="columns"
       :locale="locale"
+      server-side
       saved-state
   >
     <template #action="{ row }">
@@ -39,13 +40,13 @@ Vue.use('Datatable', Datatable)
     </template>
   </DataTable>
 
-  <!--  Local Data-->
+  <!--  Local Data -->
   <DataTable
-      table-id="datatable-02"
+      table-id="datatable-01"
       ref="datatable"
       :columns="columns"
-      :locale="locale"
       :data-rows="dataRows"
+      :locale="locale"
       saved-state
   >
     <template #action="{ row }">
@@ -166,7 +167,7 @@ this.$refs.datatable.refresh()
 
 ## Slots
 
-Every of column can have a slot, and it defines by adding the `slot` attribute inside `columns`. The slot name is the same as the column name, and it has `row` and `column` as props data.
+Every of columns can have a slot, and it defines by adding the `slot` attribute inside `columns`. it has `row` and `column` as props data.
 
 ```vue
 <template>
