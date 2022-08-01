@@ -203,4 +203,4 @@ If you like this plugin and want to support me, you can [buy me a coffee ☕](ht
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/HELMAB/lv2-datatable/blob/master/LICENSE) for more information.
