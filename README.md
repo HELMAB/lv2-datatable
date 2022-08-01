@@ -107,10 +107,27 @@ export default {
       ];
     },
   },
+  created() {
+    this.dataRows = Array(10000)
+        .fill(1, 0, 10000)
+        .map((_, i) => {
+          return {
+            id: i + 1,
+            title: `Title ${i + 1}`,
+            user: {
+              id: i + 1,
+              name: `User ${i + 1}`,
+            },
+            created_at: new Date().toLocaleString(),
+          };
+        });
+  },
 }
 </script>
 ```
 ### Server Side
+
+For server side, we need to use [Laravel Datatables](https://github.com/yajra/laravel-datatables) package.
 
 ```php
 <?php
