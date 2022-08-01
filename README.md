@@ -13,6 +13,8 @@ npm install lv2-datatable
 
 ## Usage
 
+### Client Side
+
 ```js
 import Vue from 'vue'
 import Datatable from 'lv2-datatable'
@@ -93,6 +95,38 @@ export default {
 }
 </script>
 ```
+### Server Side
+
+```php
+<?php
+
+namespace App\Http\Controllers\Api\V1;
+
+use App\Http\Controllers\Controller;
+use App\Models\Post;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
+
+class PostController extends Controller
+{
+    public function datatable(Request $request): JsonResponse
+    {
+        $posts = Post::query()
+            ->with(['user'])
+            ->select('posts.*');
+
+        return DataTables::of($posts)
+            ->editColumn('title', fn(Post $post) => Str::limit($post->title, 20))
+            ->editColumn("created_at", function (Post $post) {
+                return $post->created_at->format('Y-m-d H:i:s A');
+            })
+            ->make();
+    }
+}
+```
+
 ## Props
 
 | Prop          | Type    | Description                                |
