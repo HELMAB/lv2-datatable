@@ -1,6 +1,6 @@
 {
     "name": "lv2-datatable",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "Integrate Laravel Vue Datatable with your Laravel application without using JQuery.",
     "main": "dist/DataTable.ssr.js",
     "browser": "dist/DataTable.esm.js",
@@ -51,5 +51,22 @@
     },
     "engines": {
         "node": ">=12"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HELMAB/lv2-datatable.git"
+    },
+    "keywords": [
+        "datatable",
+        "laravel-datatable",
+        "vue-datatable",
+        "vue-laravel-datatable",
+        "laravel-vue-datatable"
+    ],
+    "author": "HEL Mab",
+    "license": "MIT License",
+    "bugs": {
+        "url": "https://github.com/HELMAB/lv2-datatable/issues"
+    },
+    "homepage": "https://github.com/HELMAB/lv2-datatable#README"
 }
