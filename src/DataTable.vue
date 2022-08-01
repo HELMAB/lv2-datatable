@@ -154,8 +154,8 @@ export default {
   components: { Paginate },
   props: {
     axios: {
-      type: [Object, Function],
-      required: true,
+      type: [Object, Function, null],
+      default: null
     },
     tableId: {
       type: String,

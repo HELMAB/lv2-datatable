@@ -24,15 +24,29 @@ Vue.use('Datatable', Datatable)
 
 ```vue
 <template>
+  <!--  HTTP Request-->
   <DataTable
-      :axios="axios"
-      url="http://127.0.0.1:8000/api/v1/posts/datatable"
-      :columns="columns"
+      table-id="datatable-01"
       ref="datatable"
+      url="http://127.0.0.1:8000/api/v1/posts/datatable"
+      :axios="axios"
+      :columns="columns"
       :locale="locale"
-      table-id="datatable"
       saved-state
+  >
+    <template #action="{ row }">
+      <ButtonActions :row="row" />
+    </template>
+  </DataTable>
+
+  <!--  Local Data-->
+  <DataTable
+      table-id="datatable-02"
+      ref="datatable"
+      :columns="columns"
+      :locale="locale"
       :data-rows="dataRows"
+      saved-state
   >
     <template #action="{ row }">
       <ButtonActions :row="row" />
