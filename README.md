@@ -196,3 +196,11 @@ Every of columns can have a slot, and it defines by adding the `slot` attribute 
   </DataTable>
 </template>
 ```
+
+## Support
+
+If you like this plugin and want to support me, you can [buy me a coffee ☕](https://www.buymeacoffee.com/helmab)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
