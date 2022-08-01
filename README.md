@@ -1,4 +1,4 @@
-# Laravel Datatables + Vue2
+# Laravel - Vue2 Datatable
 
 Integrate Laravel Vue Datatable with your Laravel application without using JQuery. It can handle listing data locally and remote.
 
