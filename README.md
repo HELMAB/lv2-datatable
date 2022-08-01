@@ -159,7 +159,7 @@ class PostController extends Controller
 
 ## Methods
 
-To redraw the datatable, you can call this method.
+To refresh the datatable, you can call this method.
 
 ```js
 this.$refs.datatable.refresh()
