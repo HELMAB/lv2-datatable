@@ -6,13 +6,13 @@
           {{ sLengthMenu[0] }}
           <div :class="theme.table.formClasses">
             <select
-              v-model="length"
-              :class="theme.table.inputLengthOptionClasses"
+                v-model="length"
+                :class="theme.table.inputLengthOptionClasses"
             >
               <option
-                :value="option.value"
-                v-for="(option, key) in lengthOptions"
-                :key="key"
+                  v-for="(option, key) in lengthOptions"
+                  :key="key"
+                  :value="option.value"
               >
                 {{ option.label }}
               </option>
@@ -24,10 +24,10 @@
           {{ selectedLocale.sSearch }}
           <div :class="theme.table.formClasses">
             <input
-              type="text"
-              :class="theme.table.inputSearchClasses"
-              v-model="search"
-              @keydown="onSearch"
+                v-model="search"
+                :class="theme.table.inputSearchClasses"
+                type="text"
+                @keydown="onSearch"
             />
           </div>
         </div>
@@ -36,86 +36,86 @@
 
     <div :class="theme.table.colClasses">
       <div :class="theme.table.tableContainer">
-        <div class="loading-container" v-if="isLoading">
+        <div v-if="isLoading" class="loading-container">
           <div class="loading-content">
             <p class="m-0">
               {{ selectedLocale.sLoadingRecords }}
             </p>
           </div>
         </div>
-        <table :class="theme.table.tableClasses" :id="tableId">
+        <table :id="tableId" :class="theme.table.tableClasses">
           <thead>
-            <tr>
-              <th
+          <tr>
+            <th
                 v-for="(column, headerIndex) in columns"
                 :key="headerIndex"
                 :style="`${
                   column.width ? `width: ${column.width}!important;` : ''
                 }`"
-              >
-                <div
+            >
+              <div
                   :class="{ 'cursor-pointer': column.orderable }"
                   class="table-header-th"
                   @click="onClickOrderColumn(headerIndex)"
-                >
-                  <span>{{ column.title }}</span>
-                  <template v-if="column.orderable">
-                    <template
+              >
+                <span>{{ column.title }}</span>
+                <template v-if="column.orderable">
+                  <template
                       v-if="
                         defaultOrder[0] !== null &&
                         defaultOrder[0] === headerIndex
                       "
-                    >
-                      <i
-                        class="fa-solid fa-arrow-down-short-wide"
+                  >
+                    <i
                         v-if="defaultOrder[1] === 'asc'"
-                      />
+                        class="fa-solid fa-arrow-down-short-wide"
+                    />
 
-                      <i
-                        class="fa-solid fa-arrow-up-short-wide"
+                    <i
                         v-if="defaultOrder[1] === 'desc'"
-                      />
-                    </template>
-                    <template v-else>
-                      <i class="fa fa-sort" style="color: #dddddd" />
-                    </template>
-                  </template>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-if="rows.length">
-              <tr v-for="(row, key) in rows" :key="key">
-                <td v-for="(column, _key) in columns" :key="_key">
-                  <template v-if="column.slot">
-                    <slot :name="column.slot" :row="row" :column="column" />
+                        class="fa-solid fa-arrow-up-short-wide"
+                    />
                   </template>
                   <template v-else>
-                    <template v-if="column.data.split('.').length > 1">
-                      {{ row["user"]["name"] }}
-                    </template>
-                    <template v-else>
-                      {{ row[column.data] }}
-                    </template>
+                    <i class="fa fa-sort" style="color: #dddddd"/>
                   </template>
-                </td>
-              </tr>
-            </template>
-            <template v-else>
-              <tr>
-                <td :colspan="columns.length">
-                  <p class="text-muted text-center">
-                    <template v-if="search">
-                      {{ selectedLocale.sZeroRecords }}
-                    </template>
-                    <template v-else>
-                      {{ selectedLocale.sEmptyTable }}
-                    </template>
-                  </p>
-                </td>
-              </tr>
-            </template>
+                </template>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <template v-if="rows.length">
+            <tr v-for="(row, key) in rows" :key="key">
+              <td v-for="(column, _key) in columns" :key="_key">
+                <template v-if="column.slot">
+                  <slot :column="column" :name="column.slot" :row="row"/>
+                </template>
+                <template v-else>
+                  <template v-if="column.data.split('.').length > 1">
+                    {{ column.data.split('.').reduce((o, i) => o[i], row) }}
+                  </template>
+                  <template v-else>
+                    {{ row[column.data] }}
+                  </template>
+                </template>
+              </td>
+            </tr>
+          </template>
+          <template v-else>
+            <tr>
+              <td :colspan="columns.length">
+                <p class="text-muted text-center">
+                  <template v-if="search">
+                    {{ selectedLocale.sZeroRecords }}
+                  </template>
+                  <template v-else>
+                    {{ selectedLocale.sEmptyTable }}
+                  </template>
+                </p>
+              </td>
+            </tr>
+          </template>
           </tbody>
         </table>
       </div>
@@ -124,16 +124,16 @@
       <div class="table-paginate-container">
         <p>{{ sInfo }}</p>
         <paginate
-          :page-count="pages"
-          :click-handler="fetchData"
-          :force-page="page"
-          :prev-text="selectedLocale.oPaginate.sPrevious"
-          :next-text="selectedLocale.oPaginate.sNext"
-          :container-class="theme.paginate.containerClass"
-          :page-class="theme.paginate.pageClass"
-          :page-link-class="theme.paginate.pageLinkClass"
-          :prev-link-class="theme.paginate.pageLinkClass"
-          :next-link-class="theme.paginate.pageLinkClass"
+            :click-handler="fetchData"
+            :container-class="theme.paginate.containerClass"
+            :force-page="page"
+            :next-link-class="theme.paginate.pageLinkClass"
+            :next-text="selectedLocale.oPaginate.sNext"
+            :page-class="theme.paginate.pageClass"
+            :page-count="pages"
+            :page-link-class="theme.paginate.pageLinkClass"
+            :prev-link-class="theme.paginate.pageLinkClass"
+            :prev-text="selectedLocale.oPaginate.sPrevious"
         />
       </div>
     </div>
@@ -147,11 +147,11 @@ import themeData from "@/composables/useTheme";
 import useLocalStorage from "@/composables/useLocalStorage";
 import useLocale from "@/composables/useLocale";
 
-const { setDataTableState, getDataTableState } = useLocalStorage;
+const {setDataTableState, getDataTableState} = useLocalStorage;
 
 export default {
   name: "DataTable",
-  components: { Paginate },
+  components: {Paginate},
   props: {
     axios: {
       type: [Object, Function, null],
@@ -173,10 +173,10 @@ export default {
       type: Array,
       default: () => {
         return [
-          { label: 10, value: 10 },
-          { label: 25, value: 25 },
-          { label: 50, value: 50 },
-          { label: 100, value: 100 },
+          {label: 10, value: 10},
+          {label: 25, value: 25},
+          {label: 50, value: 50},
+          {label: 100, value: 100},
         ];
       },
     },
@@ -226,9 +226,9 @@ export default {
   computed: {
     sInfo() {
       return this.selectedLocale.sInfo
-        .replace("_START_", this.length * this.start + 1)
-        .replace("_END_", this.length * (this.start + 1))
-        .replace("_TOTAL_", this.recordsTotal);
+          .replace("_START_", this.length * this.start + 1)
+          .replace("_END_", this.length * (this.start + 1))
+          .replace("_TOTAL_", this.recordsTotal);
     },
     sLengthMenu() {
       return this.selectedLocale.sLengthMenu.split(" _MENU_ ");
@@ -264,6 +264,7 @@ export default {
           index,
           this.defaultOrder[1] === "asc" ? "desc" : "asc",
         ];
+
         this.fetchData(this.page);
       }
     },
@@ -310,19 +311,19 @@ export default {
 
       this.isLoading = true;
       this.axios
-        .post(this.url, formData)
-        .then(({ data }) => {
-          if (data.data) {
-            this.rows = data.data;
-            const { recordsTotal, recordsFiltered } = data;
-            this.recordsTotal = recordsTotal;
-            this.recordsFiltered = recordsFiltered;
-            this.pages = Math.ceil(this.recordsFiltered / this.length);
-          }
-        })
-        .finally(() => {
-          this.isLoading = false;
-        });
+          .post(this.url, formData)
+          .then(({data}) => {
+            if (data.data) {
+              this.rows = data.data;
+              const {recordsTotal, recordsFiltered} = data;
+              this.recordsTotal = recordsTotal;
+              this.recordsFiltered = recordsFiltered;
+              this.pages = Math.ceil(this.recordsFiltered / this.length);
+            }
+          })
+          .finally(() => {
+            this.isLoading = false;
+          });
     },
     requestLocalData(page) {
       this.page = page;
@@ -333,44 +334,36 @@ export default {
       let recordFiltered = this.dataRows;
 
       const searchColumns = this.columns
-        .map((column) => {
-          if (column.searchable) {
-            return column;
-          }
-        })
-        .filter((column) => column !== undefined);
-
-      if (
-        searchColumns.length &&
-        (this.search !== "" || this.search !== null)
-      ) {
-        recordFiltered = recordFiltered
-          .map((row) => {
-            for (const column in searchColumns) {
-              if (row[searchColumns[column].data].includes(this.search)) {
-                return row;
-              }
+          .map((column) => {
+            if (column.searchable) {
+              return column;
             }
           })
-          .filter((row) => row !== undefined);
+          .filter((column) => column !== undefined);
+
+      if (searchColumns.length && (this.search !== "" && this.search !== null)) {
+        recordFiltered = recordFiltered.map((row) => {
+          for (const column in searchColumns) {
+            const _column = searchColumns[column].data
+            const value = (row[_column]).toString();
+            if (value.includes(this.search)) {
+              return row;
+            }
+          }
+        }).filter((row) => row !== undefined);
       }
 
-      const defaultOrder = this.defaultOrder;
-
-      recordFiltered = recordFiltered.sort(function () {
-        if (defaultOrder[1] === "asc") {
-          return 1;
-        } else {
-          return -1;
-        }
+      recordFiltered = recordFiltered.sort(function (a, b) {
+        return a > b ? 1 : -1
       });
 
       if (this.defaultOrder) {
         this.rows = recordFiltered.slice(
-          this.start * this.length,
-          this.start * this.length + parseInt(this.length)
+            this.start * this.length,
+            this.start * this.length + parseInt(this.length)
         );
       }
+
       this.recordsTotal = this.dataRows.length;
       this.recordsFiltered = recordFiltered.length;
       this.pages = Math.ceil(this.recordsFiltered / this.length);
