@@ -1,6 +1,6 @@
 {
     "name": "lv2-datatable",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Integrate the Laravel datatables with your Vue app without using JQuery. It can handle listing data locally and remote.",
     "main": "dist/DataTable.ssr.js",
     "browser": "dist/DataTable.esm.js",
