@@ -141,8 +141,8 @@
 </template>
 
 <script>
-import debounce from "debounce";
-import Paginate from "vuejs-paginate";
+import {debounce} from "@/composables/useDebounce";
+import Paginate from "@/components/Paginate";
 import themeData from "@/composables/useTheme";
 import useLocalStorage from "@/composables/useLocalStorage";
 import useLocale from "@/composables/useLocale";
@@ -271,7 +271,7 @@ export default {
     onSearch: debounce(function (event) {
       this.search = event.target.value;
       this.fetchData();
-    }, 300),
+    }, 500),
     fetchData: function (page = 1) {
       if (this.serverSide) {
         this.requestDataApi(page);
