@@ -25,7 +25,7 @@ Vue.use('Datatable', Datatable)
 <template>
   <!--  HTTP Request -->
   <DataTable
-      table-id="datatable-02"
+      table-id="datatable-01"
       ref="datatable"
       url="http://127.0.0.1:8000/api/v1/posts/datatable"
       :axios="axios"
@@ -41,7 +41,7 @@ Vue.use('Datatable', Datatable)
 
   <!--  Local Data -->
   <DataTable
-      table-id="datatable-01"
+      table-id="datatable-02"
       ref="datatable"
       :columns="columns"
       :data-rows="dataRows"
